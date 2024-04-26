@@ -4,7 +4,7 @@ def longest_string_chain(strings):
     
     # Initialize dictionaries to store chain length and predecessors
     chain_length = {}
-    predecessor = {}
+    pred = {}
 
     # Initialize max_chain_length and max_chain
     max_chain_length = 0
@@ -14,14 +14,14 @@ def longest_string_chain(strings):
     for s in strings:
         # Initialize chain length for current string
         chain_length[s] = 1
-        predecessor[s] = None
+        pred[s] = None
         
         # Try removing each character and check if resulting string is in the input list
         for i in range(len(s)):
             prev = s[:i] + s[i+1:]
             if prev in chain_length and chain_length[prev] + 1 > chain_length[s]:
                 chain_length[s] = chain_length[prev] + 1
-                predecessor[s] = prev
+                pred[s] = prev
                 
         # Update max_chain_length if needed
         if chain_length[s] > max_chain_length:
